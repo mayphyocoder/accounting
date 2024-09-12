@@ -169,6 +169,12 @@
             </a>
             <ul>
                 <li>
+                    <a href="{{route('classification.index')}}">
+                        <span class="glyphicon glyphicon-th"></span><span class="text">Account Classification</span>
+                    </a>                  
+                </li> 
+
+                <li>
                     <a href="{{route('chart_accounts.index')}}">
                         <span class="glyphicon glyphicon-th"></span><span class="text">Chart of Accounts</span>
                     </a>                  
