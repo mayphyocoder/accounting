@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountTypeController;
 use App\Http\Controllers\Admin\PizzaController;
 use App\Http\Controllers\ChartofAccountController;
 use App\Http\Controllers\ClassificationController;
@@ -17,7 +18,7 @@ Auth::routes();
 
 Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::resource('pizza',PizzaController::class);
 Route::resource('chart_accounts', ChartofAccountController::class);
 Route::resource('/classification',ClassificationController::class);
+Route::resource('account_type',AccountTypeController::class);
 

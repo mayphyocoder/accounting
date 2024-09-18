@@ -7,7 +7,7 @@
             </div>
             <div class="row">
 
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <div class="head clearfix">
                         <div class="isw-documents"></div>
                         <h1>Accounts Classifications</h1>

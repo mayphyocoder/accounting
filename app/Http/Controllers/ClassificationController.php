@@ -95,7 +95,7 @@ class ClassificationController extends Controller
         $classification->account_name = $request->account_name;
         $classification->account_code = $request->account_code;
         $classification->update();
-        return redirect()->back();
+        return redirect()->route('classification.index');
     }
 
     /**

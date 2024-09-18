@@ -17,9 +17,24 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
             </form>
+            <div class="workplace">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="head clearfix">
+                            <div class="isw-calendar"></div>
+                            <h1>Calendar</h1>
+                        </div>
+                        <div class="block-fluid">
+                            <div id="calendar" class="fc"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-
-       
+        
+        
         
     </div>
+    
 @endsection

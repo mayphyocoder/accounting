@@ -51,7 +51,7 @@
 
 
                             <div class="footer tar">
-                                <button class="btn btn-default" type="submit">Submit</button>
+                                <button class="btn btn-default" type="submit">Update</button>
                             </div>
                         </div>
                     </form>

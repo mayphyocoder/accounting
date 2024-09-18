@@ -173,6 +173,11 @@
                         <span class="glyphicon glyphicon-th"></span><span class="text">Account Classification</span>
                     </a>                  
                 </li> 
+                <li>
+                    <a href="{{route('account_type.index')}}">
+                        <span class="glyphicon glyphicon-th"></span><span class="text">Account Type</span>
+                    </a>                  
+                </li>
 
                 <li>
                     <a href="{{route('chart_accounts.index')}}">
