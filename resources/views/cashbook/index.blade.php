@@ -3,18 +3,19 @@
     <div class="content">
         <div class="workplace">
             
+            <div class="row">
 
                 <div class="col-md-12">
                     <div class="head clearfix">
                         <div class="isw-grid"></div>
-                        <h1>Chart of Accounts</h1>
+                        <h1>Cash Book Table</h1>
                         <ul class="buttons">
                             <li><a href="#" class="isw-download"></a></li>
                             <li>
                                 <a href="#" class="isw-settings"></a>
                                 <ul class="dd-list">
                                     <li>
-                                        <a href="{{ route('chart_accounts.create') }}"><span class="isw-plus"></span>
+                                        <a href="{{ route('cashbook.create') }}"><span class="isw-plus"></span>
                                             Create
                                         </a>
                                     </li>
@@ -36,39 +37,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($chartof_accounts as $chartof_account)
+                                
                                 <tr>
                                     
                                     <td>
-                                        {{ $loop->iteration }}
+                                        dd
                                     </td>
                                     <td>
-                                        {{$chartof_account->account_type_table->description}}
+                                        ss
                                     </td>
                                     <td>
-                                        {{$chartof_account->coa_number}}
+                                        aa
                                     </td>
                                     <td>
-                                        {{$chartof_account->coa_name}}
+                                        hh
                                     </td>
                                     <td>
-                                        <form action="{{ route('chart_accounts.destroy', $chartof_account->id) }}"
-                                            method="post">
-                                            @method('DELETE')
-                                            @csrf
+                                        
                                             <a class="btn btn-info"
-                                                href="{{ route('chart_accounts.edit', $chartof_account->id) }}">Edit</a>
+                                                href="">Edit</a>
 
                                             <a href="#" class="btn btn-danger del_confirm" id="confirm-text">
                                                 Delete
                                             </a>
                                             <a class="btn btn-info"
-                                                href="{{ route('chart_accounts.show', $chartof_account->id) }}">Show</a>
-                                        </form>
+                                                href="">Show</a>
+                                        
                                     </td>
                                 </tr>
 
-                                @endforeach
+                                
 
                             </tbody>
                         </table>

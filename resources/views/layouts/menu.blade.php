@@ -101,7 +101,7 @@
             </a>
             <ul>
                 <li>
-                    <a href="">
+                    <a href="{{route('cashbook.index')}}">
                         <span class="glyphicon glyphicon-th"></span><span class="text">Cashbook</span>
                     </a>                  
                 </li>          

@@ -91,11 +91,6 @@
                             </div>
 
 
-
-
-
-
-
                             <div class="footer tar">
                                 <a href="{{ route('chart_accounts.index') }}" class="btn btn-info"> Back </a>
                                 <button class="btn btn-default" type="submit">Submit</button>
