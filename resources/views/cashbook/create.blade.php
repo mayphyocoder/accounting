@@ -84,6 +84,8 @@
                     </div>
 
                     <br><br>
+
+
                     <form action="{{ route('cashbook.store') }}" method="post">
                         @csrf
                         <div class="block-fluid table-sorting clearfix">
@@ -121,59 +123,75 @@
                                         </th>
 
                                     </tr>
+                                </thead>
+
                                 <tbody>
 
                                     <tr>
                                         <td>
                                             <input type="date" name="cashbook_date" value="" style="width: 100%;">
+                                            @error('cashbook_date')
+                                                {{ $message }}
+                                            @enderror
                                         </td>
+
                                         <td>
                                             <select name="coa_acc_type_id_1" id="s2_1" style="width: 100%;">
                                                 <option value="">Please select...</option>
                                                 @foreach ($chartof_accounts as $chartof_account)
-                                                    <option value="{{ $chartof_account->coa_name ?? '' }}">
-
+                                                    <option value="{{ $chartof_account->id ?? '' }}">
                                                         {{ $chartof_account->coa_number }}
                                                         {{ $chartof_account->coa_name }}
-
                                                     </option>
                                                 @endforeach
                                             </select>
+                                            @error('coa_acc_type_id_1')
+                                                {{ $message }}
+                                            @enderror
                                         </td>
+
                                         <td>
                                             <select name="coa_acc_type_id_2" id="s2_1" style="width: 100%;">
                                                 <option value="">Please select...</option>
                                                 @foreach ($chartof_accounts as $chartof_account)
                                                     @if ($chartof_account->account_type_id == 3 || $chartof_account->account_type_id == 4)
-                                                        <option value="{{ $chartof_account->coa_name ?? '' }}">
-
+                                                        <option value="{{ $chartof_account->id ?? '' }}">
                                                             {{ $chartof_account->coa_name }}
-
-
                                                         </option>
                                                     @endif
                                                 @endforeach
                                             </select>
+                                            @error('coa_acc_type_id_2')
+                                                {{ $message }}
+                                            @enderror
                                         </td>
 
                                         <td>
-                                            <input type="text" value="" placeholder="Unit Voucher"
-                                                style="width: 100%;" name="voucher" />
-                                        </td>
-                                        <td>
-                                            <input type="text" value="0" placeholder="0" style="width: 100%;"
-                                                name="debit" />
-                                        </td>
-                                        <td>
-                                            <input type="text" value="0" placeholder="0" style="width: 100%;"
-                                                name="credit" />
+                                            <input type="text" placeholder="Voucher" style="width: 100%;"
+                                                name="voucher" />
+                                            @error('voucher')
+                                                {{ $message }}
+                                            @enderror
                                         </td>
 
+                                        <td>
+                                            <input type="text" value="0" style="width: 100%;" name="debit"
+                                                oninput="calc()" id="debit" />
+                                            @error('debit')
+                                                {{ $message }}
+                                            @enderror
+                                        </td>
+
+                                        <td>
+                                            <input type="text" value="0" style="width: 100%;" name="credit"
+                                                oninput="calc()" id="credit" />
+                                            @error('credit')
+                                                {{ $message }}
+                                            @enderror
+                                        </td>
                                     </tr>
-
-
-
                                 </tbody>
+
                                 <tr>
 
                                     <th width="15%" colspan="2"
@@ -189,7 +207,8 @@
                                     </th>
 
                                     <th width="5%"
-                                        style="text-align: center;background-color:#76a9e0!important; color:white;">Exchange
+                                        style="text-align: center;background-color:#76a9e0!important; color:white;">
+                                        Exchange
                                         Rate</th>
 
                                     <th width="45%"
@@ -197,12 +216,16 @@
                                     </th>
 
                                 </tr>
+
                                 <tbody>
 
                                     <tr>
                                         <td colspan="2">
-                                            <input type="text" value="" placeholder="Description"
-                                                style="width: 100%;" name="cashbook_description" />
+                                            <input type="text" placeholder="Description" style="width: 100%;"
+                                                name="cashbook_description" />
+                                            @error('cashbook_description')
+                                                {{ $message }}
+                                            @enderror
                                         </td>
 
                                         <td>
@@ -212,9 +235,10 @@
                                                 <option value="5">5%</option>
                                                 <option value="10">10%</option>
                                                 <option value="0">Other</option>
-
-
                                             </select>
+                                            @error('taxes')
+                                                {{ $message }}
+                                            @enderror
                                         </td>
 
                                         <td>
@@ -224,25 +248,30 @@
                                                 <option value="USD">USD</option>
                                                 <option value="Baht">Baht</option>
                                                 <option value="VND">VND</option>
-
-
                                             </select>
+                                            @error('currency')
+                                                {{ $message }}
+                                            @enderror
                                         </td>
+
                                         <td>
                                             <input type="text" value="0" placeholder="Rate" style="width: 100%;"
-                                                name="rate" />
+                                                name="rate" oninput="calc()" id="rate" />
+                                            @error('rate')
+                                                {{ $message }}
+                                            @enderror
                                         </td>
+
                                         <td>
-                                            <input type="text" value="" placeholder="Total"
-                                                style="width: 100%;" name="total_amount" />
+                                            <input type="text" placeholder="Total" style="width: 100%;"
+                                                name="total_amount" id="total_amount" readonly />
                                         </td>
 
                                     </tr>
 
                                 </tbody>
-                                </thead>
-
                             </table>
+
                             <div class="footer tar">
                                 <a href="{{ route('chart_accounts.index') }}" class="btn btn-info"> Back </a>
                                 <button class="btn btn-warning" type="submit">Save</button>
@@ -255,3 +284,30 @@
         </div>
     </div>
 @endsection
+
+
+<script>
+    function calc() {
+        var debit = parseFloat(document.getElementById('debit').value) || 0;
+        var credit = parseFloat(document.getElementById('credit').value) || 0;
+        var rate = parseFloat(document.getElementById('rate').value);
+
+        var debit_credit = 0;
+        if (debit > 0) {
+            document.getElementById('credit').value = 0;
+            debit_credit += debit;
+        }
+
+        if (credit > 0) {
+            document.getElementById('debit').value = 0;
+            debit_credit += credit;
+        }
+
+        if (rate == 0) {
+            document.getElementById('total_amount').value = debit_credit;
+        } else {
+            var total_amount = debit_credit * rate;
+            document.getElementById('total_amount').value = total_amount;
+        }
+    }
+</script>

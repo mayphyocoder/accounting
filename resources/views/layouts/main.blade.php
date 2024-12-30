@@ -14,6 +14,7 @@
 
     <link rel='stylesheet' type='text/css' href="{{ asset('assets/css/fullcalendar.print.css') }}" media='print' />
 
+    {{-- // exportexcel folder --}}
 
 
 </head>
@@ -22,12 +23,12 @@
     <div class="wrapper">
 
         <div class="header">
-            <a class="logo" href="index.html"><img src="{{ asset('assets/img/name.png') }}"
-                    alt="" title="May Phyo -  responsive admin panel" style="width:20%;margin-inline:35px;" /></a>
+            <a class="logo" href="{{ route('home') }}"><img src="{{ asset('assets/img/name.png') }}" alt=""
+                    title="May Phyo -  responsive admin panel" style="width:20%;margin-inline:35px;" /></a>
             <ul class="header_menu">
                 <li class="list_icon"><a href="#">&nbsp;</a></li>
                 <li class="settings_icon">
-                    <a href="#" class="link_themeSettings">&nbsp;</a>
+                    <a href="{{ route('home') }}" class="link_themeSettings">&nbsp;</a>
 
                     <div id="themeSettings" class="popup">
                         <div class="head clearfix">
@@ -97,7 +98,9 @@
         </div>
 
         @include('layouts.menu')
-
+        @if (URL::current() == route('welcome'))
+            {{-- @include('layouts.slider') --}}
+        @endif
 
         @yield('content')
     </div>
@@ -179,5 +182,9 @@
     });
 </script>
 @yield('script')
+{{-- // excelexport folder --}}
+
+{{--  --}}
+
 
 </html>

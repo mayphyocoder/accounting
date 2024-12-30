@@ -53,7 +53,10 @@ class ChartofAccountController extends Controller
         $chartof_account->coa_number = $request->coa_number;
         $chartof_account->coa_name = $request->coa_name;
         $chartof_account->account_type_id = $request->account_type_id;
-        $chartof_account->classification_id = null;
+
+        $account_type = AccountType::find($request->account_type_id);
+
+        $chartof_account->classification_id = $account_type->classification_id;
         $chartof_account->save();
         return redirect()->back();
     }
@@ -106,7 +109,10 @@ class ChartofAccountController extends Controller
         $chartof_account->coa_number = $request->coa_number;
         $chartof_account->coa_name = $request->coa_name;
         $chartof_account->account_type_id = $request->account_type_id;
-        $chartof_account->classification_id = null;
+
+        $account_type = AccountType::find($request->account_type_id);
+
+        $chartof_account->classification_id = $account_type->classification_id;
         $chartof_account->update();
         return redirect()->route('chart_accounts.index');
     }

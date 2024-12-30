@@ -21,13 +21,15 @@
                         </ul>
                     </div>
                     <div class="block-fluid table-responsive mt-3">
-                        <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortable">
+                        <table cellpadding="0" cellspacing="0" width="100%" class="table">
                             <thead>
-                                <tr>
-                                    <th width="5%" style="text-align: center">ID</th>
-                                    <th width="35%" style="text-align: center">Account Name</th>
-                                    <th width="15%" style="text-align: center">Account Code</th>
-                                    <th width="45%" style="text-align: center">Action</th>
+                                <tr style="background-color: lightskyblue">
+                                    <th width="5%" style="text-align: center;background-color: lightskyblue">ID</th>
+                                    <th width="35%" style="text-align: center;background-color: lightskyblue">Account
+                                        Name</th>
+                                    <th width="15%" style="text-align: center;background-color: lightskyblue">Account
+                                        Code</th>
+                                    <th width="45%" style="text-align: center;background-color: lightskyblue">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,7 +45,7 @@
                                         <td width="45%" style="text-align: center">
 
 
-                                            
+
 
                                             <form action="{{ route('classification.destroy', $classification->id) }}"
                                                 method="post">
@@ -51,7 +53,7 @@
                                                 @csrf
 
                                                 <a class="btn btn-info"
-                                                href="{{ route('classification.edit', $classification->id) }}">Edit</a>
+                                                    href="{{ route('classification.edit', $classification->id) }}">Edit</a>
 
                                                 <a href="#" class="btn btn-danger del_confirm" id="confirm-text">
                                                     Delete

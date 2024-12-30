@@ -14,9 +14,7 @@
                 Logout
             </a>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
+
             <div class="workplace">
                 <div class="row">
                     <div class="col-md-6">
@@ -30,11 +28,23 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
-        
-        
-        
+
+
+        {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form> --}}
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
     </div>
-    
 @endsection

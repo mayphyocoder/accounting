@@ -17,7 +17,9 @@ class CashbookController extends Controller
      */
     public function index()
     {
-        return view('cashbook.index');
+        $cashbooks = CashBook::all();
+
+        return view('cashbook.index', compact('cashbooks'));
     }
 
     /**
@@ -28,11 +30,9 @@ class CashbookController extends Controller
     public function create()
     {
         $chartof_accounts = ChartofAccount::all();
-        // $classifications = Classification::all();
         $account_types = AccountType::all();
 
-        return view('cashbook.create', compact('chartof_accounts','account_types'));
-
+        return view('cashbook.create', compact('chartof_accounts', 'account_types'));
     }
 
     /**
@@ -43,22 +43,20 @@ class CashbookController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $request->validate([
 
+        $request->validate([
             'cashbook_date' => 'required',
             'coa_acc_type_id_1' => 'required',
             'coa_acc_type_id_2' => 'required',
             'voucher' => 'required',
             'debit' => 'required|numeric',
-            'credit'=>'required|numeric',
-            'cashbook_description' => 'required',
+            'credit' => 'required|numeric',
+            'rate' => 'numeric',
             'currency' => 'required',
-            'total_amount' => 'required',
-
+            'total_amount' => 'numeric',
         ]);
-        
-            // => from Table straight///
+
+        // => from Table straight///
 
         $cashbook = new CashBook();
         $cashbook->cashbook_date = $request->cashbook_date;
@@ -72,13 +70,9 @@ class CashbookController extends Controller
         $cashbook->currency = $request->currency;
         $cashbook->rate = $request->rate;
         $cashbook->total_amount = $request->total_amount;
-        
         $cashbook->save();
 
-
-        
-        $cashbook->save();
-        return redirect()->back();
+        return redirect()->route('cashbook.index');
     }
 
     /**
@@ -100,7 +94,10 @@ class CashbookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $chartof_accounts = ChartofAccount::all();
+        $account_types = AccountType::all();
+        $cashbook = Cashbook::find($id);
+        return view('cashbook.edit', compact('chartof_accounts', 'account_types', 'cashbook'));
     }
 
     /**
@@ -112,7 +109,35 @@ class CashbookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'cashbook_date' => 'required',
+            'coa_acc_type_id_1' => 'required',
+            'coa_acc_type_id_2' => 'required',
+            'voucher' => 'required',
+            'debit' => 'required|numeric',
+            'credit' => 'required|numeric',
+            'rate' => 'numeric',
+            'currency' => 'required',
+            'total_amount' => 'numeric',
+        ]);
+
+        // => from Table straight///
+
+        $cashbook = Cashbook::find($id);
+        $cashbook->cashbook_date = $request->cashbook_date;
+        $cashbook->coa_acc_type_id_1 = $request->coa_acc_type_id_1;
+        $cashbook->coa_acc_type_id_2 = $request->coa_acc_type_id_2;
+        $cashbook->voucher = $request->voucher;
+        $cashbook->debit = $request->debit;
+        $cashbook->credit = $request->credit;
+        $cashbook->cashbook_description = $request->cashbook_description;
+        $cashbook->taxes = $request->taxes;
+        $cashbook->currency = $request->currency;
+        $cashbook->rate = $request->rate;
+        $cashbook->total_amount = $request->total_amount;
+        $cashbook->update();
+
+        return redirect()->route('cashbook.index');
     }
 
     /**
@@ -123,6 +148,8 @@ class CashbookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cashbook = Cashbook::find($id);
+        $cashbook->delete();
+        return redirect()->back();
     }
 }
